@@ -13,6 +13,16 @@ class ServerError(APIException):
     code = 400
     msg = "未知的HTTPException 异常"
     error_code = 4000
+    
+class AuthFailed(APIException):
+    code = 401
+    msg = "验证授权失败"
+    error_code = 4001
+
+class NotFound(APIException):
+    code = 404
+    msg = "资源没有找到,不存在"
+    error_code = 4004
 
 
 class ClientTypeError(APIException):
@@ -21,7 +31,7 @@ class ClientTypeError(APIException):
     # 错误提示内容
     msg = "客户端类型错误..."
     # 错误代码
-    error_code = 1006
+    error_code = 1000
 
 
 # 定义一个通用的参数异常信息

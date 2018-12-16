@@ -6,6 +6,7 @@ from app.models.user import User
 
 api = Redprint("client")
 
+# 客户端注册统一接口
 @api.route("/register",methods=["POST"])
 def create_client():
     #data = request.json #获取客户端json提交的数据

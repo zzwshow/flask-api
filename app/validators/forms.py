@@ -12,7 +12,7 @@ class ClientForm(Form):
     secret = StringField()
     type = IntegerField(validators=[DataRequired()])
     
-    #自定义验证器,并转换为枚举类型
+    #自定义验证器,并转换为枚举类型 (在form.xxx.data拿到的是枚举类型的名字,不是提交上来的值)
     def validate_type(self,value):
         try:
             client = ClientTypeEnum(value.data)

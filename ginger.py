@@ -31,7 +31,7 @@ def framework_error(e):
         # python原生的基类异常 就不要返回给前端了.后台记录日志!!
         # 返回APIException() 默认的未知异常即可
         
-        if not app.config["DEBUG"]:
+        if not app.config['DEBUG']:
         # 在调试中我们还是希望可以看到具体的错误信息的,在返回默认错误提示显然不方便调试
             return ServerError()
         else:
