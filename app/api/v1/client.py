@@ -1,8 +1,7 @@
 from app.libs.redprint import Redprint
 from app.validators.forms import ClientForm,UserEmailForm
 from app.libs.enums import ClientTypeEnum
-from app.libs.error_code import ClientTypeError
-from flask import request
+from app.libs.error_code import Success
 from app.models.user import User
 
 api = Redprint("client")
@@ -22,7 +21,7 @@ def create_client():
     }
     # 从验证器拿到客户端类型,然后调用该类型的验证器进行验证
     promise[form.type.data]()
-    return "success"
+    return Success()
     
     # 客户端提交数据方式  1 表单  2 json
     # 服务端接收方式: 1 request.json   2 request.args.to_dict()
