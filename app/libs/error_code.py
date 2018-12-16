@@ -9,6 +9,11 @@ class Success(APIException):
     msg = "ok"
     error_code = 0
 
+class ServerError(APIException):
+    code = 400
+    msg = "未知的HTTPException 异常"
+    error_code = 4000
+
 
 class ClientTypeError(APIException):
     # http 响应状态码

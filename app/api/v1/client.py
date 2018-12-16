@@ -29,6 +29,7 @@ def create_client():
     # 参数 效验 接收参数
     # WTForms 验证表单
 
+
 #为不同的客户端创建不同的注册逻辑(使用email注册的用户处理逻辑)
 def __register_user_by_email():
     form =  UserEmailForm().validate_for_api()
