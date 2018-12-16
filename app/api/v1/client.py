@@ -9,11 +9,14 @@ api = Redprint("client")
 
 @api.route("/register",methods=["POST"])
 def create_client():
-    data = request.json #获取客户端json提交的数据
-    form = ClientForm(data=data) #必须使用关键字参数传递给验证器
+    #data = request.json #获取客户端json提交的数据
+    ##form = ClientForm() #在BaseForm中我们已经将data传进去了
     ##使用我们自己定义的验证器,验证不通过就会抛出异常信息(下面代码就不会执行了)
-    form.validate_for_api()
+    ##form.validate_for_api()
     # 参数验证通过后下面代码会根据参数中的type类型,执行不同的验证逻辑
+    
+    # 合并上面两行代码(前提是validate_for_api()要返回实例本身这里就是"ClientForm()"然后赋值给form变量)
+    form = ClientForm().validate_for_api()
     promise = {
         ClientTypeEnum.USER_EMAIL:__register_user_by_email
     }
@@ -29,8 +32,7 @@ def create_client():
 
 #为不同的客户端创建不同的注册逻辑(使用email注册的用户处理逻辑)
 def __register_user_by_email():
-    form =  UserEmailForm(data=request.json)
-    form.validate_for_api()
+    form =  UserEmailForm().validate_for_api()
     User.register_by_email(form.nickname.data,form.account.data,form.secret.data)
         
 def __register_user_by_wx():
